@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Highscore;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -52,6 +53,18 @@ class HighscoreController extends AbstractController
             );
         }
 
-        return new Response($highscore[0]->getNickname());
+        $data = [];
+        foreach ($highscore as $entry) {
+            $data[] = [
+                'name' => $entry->getNickname()
+            ];
+        }
+
+        //$response = new Response(json_encode($highscore[0]));
+        //$response->headers->set('Content Type', 'application/json');
+        //$response->setData('hello worl;d');
+
+        //return $response;
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 }
