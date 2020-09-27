@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Highscore;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class HighscoreController extends ApiController
+class HighscoreController extends AbstractController
 {
     /**
      * @Route("/highscore", name="highscore")
@@ -34,5 +35,23 @@ class HighscoreController extends ApiController
         }
 
         return new Response('Saved new highscore with id '.$highscore->getId());
+    }
+
+    /**
+     * @Route("/highscore/{id}", name="product_show")
+     */
+    public function show($id)
+    {
+        $highscore = $this->getDoctrine()
+            ->getRepository(Highscore::class)
+            ->find($id);
+
+        if (!$highscore) {
+            throw $this->createNotFoundException(
+                'No entry found for id '.$id
+            );
+        }
+
+        return new Response('This is the entry you were looking for: '.$highscore->getNickname());
     }
 }
