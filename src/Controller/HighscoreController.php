@@ -22,7 +22,7 @@ class HighscoreController extends AbstractController
     }
 
     /**
-     * @Route("/highscore", name="highscore", methods={"POST"})
+     * @Route("/createHighscore", name="highscore", methods={"POST"})
      */
     public function createHighscore(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
@@ -47,7 +47,7 @@ class HighscoreController extends AbstractController
     }
 
     /**
-     * @Route("/highscore/get", name="product_show")
+     * @Route("/showHighScore", name="product_show", methods={"GET"})
      */
     public function show()
     {
@@ -65,7 +65,8 @@ class HighscoreController extends AbstractController
         $data = [];
         foreach ($highscore as $entry) {
             $data[] = [
-                'name' => $entry->getNickname()
+                'name' => $entry->getNickname(),
+                'streak' => $entry->getStreak()
             ];
         }
 
