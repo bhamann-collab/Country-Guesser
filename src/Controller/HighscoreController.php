@@ -38,20 +38,20 @@ class HighscoreController extends AbstractController
     }
 
     /**
-     * @Route("/highscore/{id}", name="product_show")
+     * @Route("/highscore/get", name="product_show")
      */
-    public function show($id)
+    public function show()
     {
         $highscore = $this->getDoctrine()
             ->getRepository(Highscore::class)
-            ->find($id);
+            ->findAll();
 
         if (!$highscore) {
             throw $this->createNotFoundException(
-                'No entry found for id '.$id
+                'There are no entries in the database'
             );
         }
 
-        return new Response('This is the entry you were looking for: '.$highscore->getNickname());
+        return new Response($highscore[0]->getNickname());
     }
 }
