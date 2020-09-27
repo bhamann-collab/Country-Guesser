@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Highscore;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @method Highscore|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,9 +15,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class HighscoreRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Highscore::class);
+        $this->manager = $manager;
     }
 
     public function transform(Name $name) 
@@ -39,6 +42,15 @@ class HighscoreRepository extends ServiceEntityRepository
         }
 
         return $namesArray;
+    }
+
+    public function saveScore($nickname, $streak)
+    {
+        $newScore = new HighScore();
+
+        $newScore->setNickname($nickname)->setStreak($streak);
+        $this->manager->persist($newScore);
+        $this->manager->flush();
     }
 
     // /**

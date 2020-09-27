@@ -3,39 +3,47 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\HighscoreRepository;
 use App\Entity\Highscore;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class HighscoreController extends AbstractController
 {
-    /**
-     * @Route("/highscore", name="highscore")
-     */
-    public function createHighscore(EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
+    private $highscoreRepository;
+
+    public function __construct(HighscoreRepository $highscoreRepository)
     {
+        $this->highscoreRepository = $highscoreRepository;
+    }
+
+    /**
+     * @Route("/highscore", name="highscore", methods={"POST"})
+     */
+    public function createHighscore(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
+    {
+
+        $data = json_decode($request->getContent(), true);
+
         //gets Doctrine's entity manager object, which is the most important object in Doctrine. It's responsible for saving objects to, and fetching objects from, the database.
         //$entityManager = $this->getDoctrine()->getManager();
 
-        $highscore = new Highscore();
-        $highscore->setNickname('test');
-        $highscore->setStreak(3);
 
-        // We are telling Doctrine we want to (eventually) save the Highscore (no queries yet)
-        $entityManager->persist($highscore);
+        $nickname = $data['nickname'];
+        $streak = $data['streak'];
 
-        //actally executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        $errors = $validator->validate($highscore);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+        if (empty($nickname) || empty($streak)) {
+            throw new NotFoundHttpException('Expection mandatory parameters!');
         }
 
-        return new Response('Saved new highscore with id '.$highscore->getId());
+        $this->highscoreRepository->saveScore($nickname, $streak);
+
+        return new JsonResponse(['status' => 'Customer created!'], Response::HTTP_CREATED);
+
     }
 
     /**
