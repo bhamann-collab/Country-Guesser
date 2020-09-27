@@ -14,6 +14,7 @@ class HighscoreController extends ApiController
      */
     public function createHighscore(EntityManagerInterface $entityManager): Response
     {
+        //gets Doctrine's entity manager object, which is the most important object in Doctrine. It's responsible for saving objects to, and fetching objects from, the database.
         //$entityManager = $this->getDoctrine()->getManager();
 
         $highscore = new Highscore();
