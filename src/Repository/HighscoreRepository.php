@@ -19,6 +19,28 @@ class HighscoreRepository extends ServiceEntityRepository
         parent::__construct($registry, Highscore::class);
     }
 
+    public function transform(Name $name) 
+    {
+        return [
+            'id' => (int) $name->getId(),
+            'title' => (string) $name->getNickname(),
+            'count' => (int) $name->getStreak()
+        ];
+    }
+
+    public function transformAll()
+    {
+        $names = $this->findAll();
+        $namesArray = [];
+    
+
+        foreach ($names as $name) {
+            $namesArray[] = $this->rtransform($name);
+        }
+
+        return $namesArray;
+    }
+
     // /**
     //  * @return Highscore[] Returns an array of Highscore objects
     //  */
