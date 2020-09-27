@@ -53,6 +53,7 @@ class HighscoreController extends AbstractController
             );
         }
 
+        //Getting the name of every highscore entry and bundeling then into an array
         $data = [];
         foreach ($highscore as $entry) {
             $data[] = [
@@ -60,11 +61,7 @@ class HighscoreController extends AbstractController
             ];
         }
 
-        //$response = new Response(json_encode($highscore[0]));
-        //$response->headers->set('Content Type', 'application/json');
-        //$response->setData('hello worl;d');
 
-        //return $response;
         return new JsonResponse($data, Response::HTTP_OK);
     }
 }
