@@ -53,7 +53,7 @@ class HighscoreController extends AbstractController
     {
         $highscore = $this->getDoctrine()
             ->getRepository(Highscore::class)
-            ->findAll();
+            ->findTopTen();
 
         if (!$highscore) {
             throw $this->createNotFoundException(

@@ -53,6 +53,12 @@ class HighscoreRepository extends ServiceEntityRepository
         $this->manager->flush();
     }
 
+    public function findTopTen()
+    {
+        $scores = $this->findAll();
+        return $scores;
+    }
+
     // /**
     //  * @return Highscore[] Returns an array of Highscore objects
     //  */
