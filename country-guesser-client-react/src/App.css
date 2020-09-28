@@ -113,9 +113,20 @@ tr:nth-child(even) {
   font-size: 40px;
 }
 
+.countryPosition {
+  margin-top: 50px;
+}
+
 .countryPosition img {
   width: 100%;
+  transition: all .2s ease-in-out;
 }
+
+.countryPosition img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
 
 
 
