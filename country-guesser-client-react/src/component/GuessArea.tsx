@@ -4,13 +4,26 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import axios from 'axios';
 
 const GuessArea = () => {
-    const [country, setCountry] = useState(null);
+    const [country, setCountry] = useState({'flag': "../../img/placeholder-flag.png"});
 
     useEffect(() => {
         axios
         .get(`https://restcountries.eu/rest/v2/name/australia`)
         .then((res) => {
-            setCountry(res.data[0]);
+            let countryName = res.data[0].name;
+            let countryPopulation = res.data[0].population;
+            let countryArea = res.data[0].area;
+            let countryCapital = res.data[0].capital;
+            let countryGini = res.data[0].gini;
+            let countryFlag = res.data[0].flag;
+
+            setCountry({
+                'name': countryName, 
+                'population': countryPopulation,
+                'area': countryArea,
+                'capital': countryCapital,
+                'gini': countryGini,
+                'flag': countryFlag});
         })
     }, [])
 
@@ -35,8 +48,10 @@ const GuessArea = () => {
                 </Row>
                 <Row>
                     <Col xs="4">
-                        <h1>Country</h1>
-                        <Button outline color="primary">Click Me</Button>
+                        <div className="countryPosition">
+                            <img src={country.flag} alt="country"/>
+                            <Button outline color="primary">Click Me</Button>
+                        </div>
                     </Col>
                     <Col xs="4"></Col>
                     <Col xs="4">

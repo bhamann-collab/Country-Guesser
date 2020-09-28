@@ -113,5 +113,9 @@ tr:nth-child(even) {
   font-size: 40px;
 }
 
+.countryPosition img {
+  width: 100%;
+}
+
 
 
