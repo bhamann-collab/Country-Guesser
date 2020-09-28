@@ -76,3 +76,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.buttonStart {
+  margin-top: 20px;
+}
+

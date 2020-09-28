@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Leaderboard from './PageTitle/Leaderboard';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 const PageTitle = () => {
     return (
@@ -21,6 +22,17 @@ const PageTitle = () => {
                 <Row>
                     <Col>
                         <Leaderboard />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <div className="buttonStart">
+                            <Link
+                            to={"/guessArea"}
+                            >
+                                <Button outline color="primary">Click Here To Start</Button>
+                            </Link>
+                        </div>
                     </Col>
                 </Row>
             </Container>
