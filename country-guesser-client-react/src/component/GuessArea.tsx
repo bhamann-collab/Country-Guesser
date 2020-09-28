@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 
 const GuessArea = () => {
+
+    useEffect(() => {
+        
+    }, [])
+
     return (
         <div className="guessArea">
             <Container>
                 <Row>
                     <Col>
-                        Streak
+                        <h1>Streak: </h1>
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        question
+                        <div className="reactColumn">
+                            <div className="questionRegion">
+                                <h3>question: Which country has more people?</h3>
+                            </div>
+                        </div>
                     </Col>
                 </Row>
                 <Row>

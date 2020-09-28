@@ -42,6 +42,11 @@ Font Loading
   }
 }
 
+.reactColumn {
+  display: flex;
+  justify-content: center;
+}
+
 /* PageTitle */
 
 .pageTitle .titleText h1 {
@@ -79,4 +84,34 @@ tr:nth-child(even) {
 .buttonStart {
   margin-top: 20px;
 }
+
+
+
+/* Guess Area */
+.guessArea {
+  margin-top: 50px;
+  font-family: "roboto", sans-serif;
+}
+
+.guessArea h1 {
+  font-weight: 700;
+}
+
+.questionRegion {
+  background-color: #2f3542;
+  color: #f1f2f6;
+  width: 70%;
+  min-height: 80px;
+  border-radius: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionRegion h3 {
+  font-size: 40px;
+}
+
+
 
