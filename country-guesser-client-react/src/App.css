@@ -1,3 +1,8 @@
+/* 
+Font Loading
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -36,3 +41,18 @@
     transform: rotate(360deg);
   }
 }
+
+/* PageTitle */
+
+.pageTitle .titleText h1 {
+  margin-top: 50px;
+  font-size: 60px;
+  font-family: "roboto", sans-serif;
+  font-weight: 700;
+}
+
+.pageTitle p {
+  font-size: 30px;
+}
+
+
