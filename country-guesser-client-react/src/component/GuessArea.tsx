@@ -4,20 +4,39 @@ import { Container, Row, Col, Button } from 'reactstrap';
 import axios from 'axios';
 
 const GuessArea = () => {
-    const [country, setCountry] = useState({'flag': "../../img/placeholder-flag.png"});
+    const [firstCountry, setFirstCountry] = useState({'flag': "../../img/placeholder-flag.png"});
+    const [secondCountry, setSecondCountry] = useState({'flag': "../../img/placeholder-flag.png"});
 
     useEffect(() => {
+        let firstRandNum = Math.floor(Math.random() * 250);
+        let secondRandNum =  Math.floor(Math.random() * 250);
         axios
-        .get(`https://restcountries.eu/rest/v2/name/australia`)
+        .get(`https://restcountries.eu/rest/v2/all`)
         .then((res) => {
-            let countryName = res.data[0].name;
-            let countryPopulation = res.data[0].population;
-            let countryArea = res.data[0].area;
-            let countryCapital = res.data[0].capital;
-            let countryGini = res.data[0].gini;
-            let countryFlag = res.data[0].flag;
+            console.log(res);
+            let countryName = res.data[firstRandNum].name;
+            let countryPopulation = res.data[firstRandNum].population;
+            let countryArea = res.data[firstRandNum].area;
+            let countryCapital = res.data[firstRandNum].capital;
+            let countryGini = res.data[firstRandNum].gini;
+            let countryFlag = res.data[firstRandNum].flag;
 
-            setCountry({
+            setFirstCountry({
+                'name': countryName, 
+                'population': countryPopulation,
+                'area': countryArea,
+                'capital': countryCapital,
+                'gini': countryGini,
+                'flag': countryFlag});
+
+                countryName = res.data[secondRandNum].name;
+                countryPopulation = res.data[secondRandNum].population;
+                countryArea = res.data[secondRandNum].area;
+                countryCapital = res.data[secondRandNum].capital;
+                countryGini = res.data[secondRandNum].gini;
+                countryFlag = res.data[secondRandNum].flag;
+    
+            setSecondCountry({
                 'name': countryName, 
                 'population': countryPopulation,
                 'area': countryArea,
@@ -25,9 +44,11 @@ const GuessArea = () => {
                 'gini': countryGini,
                 'flag': countryFlag});
         })
+
+
     }, [])
 
-    console.log(country)
+    console.log(firstCountry)
 
     return (
         <div className="guessArea">
@@ -49,14 +70,16 @@ const GuessArea = () => {
                 <Row>
                     <Col xs="4">
                         <div className="countryPosition">
-                            <img src={country.flag} alt="country"/>
+                            <img src={firstCountry.flag} alt="country"/>
                             <Button outline color="primary">Click Me</Button>
                         </div>
                     </Col>
                     <Col xs="4"></Col>
                     <Col xs="4">
-                        <h1>Country</h1>
-                        <Button outline color="primary">Click Me</Button>
+                    <div className="countryPosition">
+                            <img src={secondCountry.flag} alt="country"/>
+                            <Button outline color="primary">Click Me</Button>
+                        </div>
                     </Col>
                 </Row>
             </Container>
