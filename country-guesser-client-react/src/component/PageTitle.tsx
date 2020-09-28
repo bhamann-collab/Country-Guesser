@@ -1,4 +1,5 @@
 import React from 'react';
+import Leaderboard from './PageTitle/Leaderboard';
 import { Container, Row, Col } from 'reactstrap';
 
 const PageTitle = () => {
@@ -19,7 +20,7 @@ const PageTitle = () => {
                 </Row>
                 <Row>
                     <Col>
-                        
+                        <Leaderboard />
                     </Col>
                 </Row>
             </Container>
