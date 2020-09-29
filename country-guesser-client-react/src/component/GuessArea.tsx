@@ -8,9 +8,14 @@ const GuessArea = () => {
     const [firstCountry, setFirstCountry] = useState({'flag': "../../img/placeholder-flag.png"});
     const [secondCountry, setSecondCountry] = useState({'flag': "../../img/placeholder-flag.png"});
     //1 means you are correct, 2 means you are incorrect
-    const [questionStatus, setQuestionStatus] = useState(0)
+    const [questionStatus, setQuestionStatus] = useState(0);
+    const [streak, setStreak] = useState(0);
 
     useEffect(() => {
+        setNewCountries();
+    }, [])
+
+    function setNewCountries() {
         let firstRandNum = Math.floor(Math.random() * 250);
         let secondRandNum =  Math.floor(Math.random() * 250);
         axios
@@ -46,9 +51,7 @@ const GuessArea = () => {
                 'gini': countryGini,
                 'flag': countryFlag});
         })
-
-
-    }, [])
+    }
 
     function whoHasMorePeople(country1, country2) {
         if (country1.population > country2.population) {
@@ -61,6 +64,8 @@ const GuessArea = () => {
     function handleclick(countryName) {
         if (countryName === whoHasMorePeople(firstCountry, secondCountry)) {
             toast.success("Correct!");
+            setStreak(streak + 1);
+            setNewCountries();
         } else {
             toast.error("Incorrect!");
         }
@@ -73,7 +78,7 @@ const GuessArea = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h1>Streak: </h1>
+                        <h1>Streak: {streak}</h1>
                     </Col>
                 </Row>
                 <Row>
