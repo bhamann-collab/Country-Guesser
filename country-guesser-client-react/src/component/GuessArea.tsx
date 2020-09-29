@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import GameOver from './GuessArea/GameOver';
 import axios from 'axios';
 
 const GuessArea = () => {
     const [firstCountry, setFirstCountry] = useState({'flag': "../../img/placeholder-flag.png"});
     const [secondCountry, setSecondCountry] = useState({'flag': "../../img/placeholder-flag.png"});
-    //1 means you are correct, 2 means you are incorrect
-    const [questionStatus, setQuestionStatus] = useState(0);
+    //Displaying the game over component
+    const [gameOver, setGameOver] = useState(false);
     const [streak, setStreak] = useState(0);
 
     useEffect(() => {
@@ -68,6 +69,7 @@ const GuessArea = () => {
             setNewCountries();
         } else {
             toast.error("Incorrect!");
+            setGameOver(true);
         }
         console.log(countryName);
         console.log(whoHasMorePeople(firstCountry, secondCountry));
@@ -107,7 +109,7 @@ const GuessArea = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <h1>Place Holder</h1>
+                        { gameOver ? <GameOver /> : null }
                         <ToastContainer 
                         hideProgressBar={true}
                         autoClose={2000}
