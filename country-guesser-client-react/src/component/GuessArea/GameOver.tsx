@@ -7,7 +7,7 @@ const GameOver = (props) => {
     const [unmountOnClose, setUnmountOnClose] = useState(true);
     const [name, setName] = useState('');
 
-    let url = `localhost:8000/createHighscore`
+    let url = `http://localhost:8000/createHighscore`
 
     const toggle = () => setModal(!modal);
     const changeUnmountOnClose = e => {
@@ -22,8 +22,15 @@ const GameOver = (props) => {
         }
         console.log(params);
 
-        // let res = await axios.post(url);
-
+        axios.post(url, params).then(res => {
+            console.log('it works!!!')
+            console.log(res);
+            toggle();
+        })
+        .catch(err =>  {
+            console.log(err);
+            toggle();
+        })
         // console.log(`Status code: ${res.status}`);
         // console.log(`Status text: ${res.statusText}`);
         // console.log(`Request method: ${res.request.method}`);
@@ -31,7 +38,7 @@ const GameOver = (props) => {
     
         // console.log(`Date: ${res.headers.date}`);
         // console.log(`Data: ${res.data}`);
-        toggle();
+        
     }
 
     return (

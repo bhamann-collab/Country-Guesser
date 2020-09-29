@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\HighscoreRepository;
 use App\Entity\Highscore;
@@ -26,7 +27,6 @@ class HighscoreController extends AbstractController
      */
     public function createHighscore(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
-
         $data = json_decode($request->getContent(), true);
 
         //gets Doctrine's entity manager object, which is the most important object in Doctrine. It's responsible for saving objects to, and fetching objects from, the database.
