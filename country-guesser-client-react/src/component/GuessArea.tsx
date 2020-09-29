@@ -13,10 +13,10 @@ const GuessArea = () => {
     const [streak, setStreak] = useState(0);
 
     useEffect(() => {
-        setNewCountries();
+        setNewCountries(true);
     }, [])
 
-    function setNewCountries() {
+    function setNewCountries(eraseStreak) {
         let firstRandNum = Math.floor(Math.random() * 250);
         let secondRandNum =  Math.floor(Math.random() * 250);
         axios
@@ -52,6 +52,10 @@ const GuessArea = () => {
                 'gini': countryGini,
                 'flag': countryFlag});
         })
+        setGameOver(false);
+        if(eraseStreak) {
+            setStreak(0);
+        }
     }
 
     function whoHasMorePeople(country1, country2) {
@@ -67,7 +71,7 @@ const GuessArea = () => {
             if (countryName === whoHasMorePeople(firstCountry, secondCountry)) {
                 toast.success("Correct!");
                 setStreak(streak + 1);
-                setNewCountries();
+                setNewCountries(false);
             } else {
                 toast.error("Incorrect!");
                 setGameOver(true);
@@ -110,7 +114,9 @@ const GuessArea = () => {
                 </Row>
                 <Row>
                     <Col>
-                        { gameOver ? <GameOver /> : null }
+                        { gameOver ? <GameOver
+                        setNewCountries={setNewCountries}
+                        /> : null }
                         <ToastContainer 
                         hideProgressBar={true}
                         autoClose={2000}
