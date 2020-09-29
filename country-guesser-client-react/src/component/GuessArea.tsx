@@ -116,6 +116,7 @@ const GuessArea = () => {
                     <Col>
                         { gameOver ? <GameOver
                         setNewCountries={setNewCountries}
+                        streak={streak}
                         /> : null }
                         <ToastContainer 
                         hideProgressBar={true}

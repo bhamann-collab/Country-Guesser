@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
 const GameOver = (props) => {
     const [modal, setModal] = useState(false);
@@ -27,10 +27,14 @@ const GameOver = (props) => {
                 </Row>
             </Container>
             <Modal isOpen={modal} toggle={toggle} unmountOnClose={unmountOnClose}>
-                <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                <ModalHeader toggle={toggle}><h3 className="text-center">You have a score of {props.streak}<br />Enter your name here</h3></ModalHeader>
                 <ModalBody>
                     <Input type="textarea" placeholder="Enter name"/>
                 </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggle}>Enter</Button>{' '}
+                    <Button color="secondary" onClick={toggle}>Canacel</Button>
+                </ModalFooter>
             </Modal>
         </div>
     )
