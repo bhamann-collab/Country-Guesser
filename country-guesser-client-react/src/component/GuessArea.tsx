@@ -63,16 +63,17 @@ const GuessArea = () => {
     }
 
     function handleclick(countryName) {
-        if (countryName === whoHasMorePeople(firstCountry, secondCountry)) {
-            toast.success("Correct!");
-            setStreak(streak + 1);
-            setNewCountries();
-        } else {
-            toast.error("Incorrect!");
-            setGameOver(true);
-        }
-        console.log(countryName);
-        console.log(whoHasMorePeople(firstCountry, secondCountry));
+        if (!gameOver) {
+            if (countryName === whoHasMorePeople(firstCountry, secondCountry)) {
+                toast.success("Correct!");
+                setStreak(streak + 1);
+                setNewCountries();
+            } else {
+                toast.error("Incorrect!");
+                setGameOver(true);
+            }
+        } 
+
     }
 
     return (
