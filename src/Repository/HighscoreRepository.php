@@ -55,7 +55,12 @@ class HighscoreRepository extends ServiceEntityRepository
 
     public function findTopTen()
     {
-        $scores = $this->findAll();
+        //Gets the top ten entries from the database
+        $scores = $this->createQueryBuilder('h')
+                    ->orderBy('h.streak', 'DESC')
+                    ->setMaxResults(10)
+                    ->getQuery()
+                    ->getResult();
         return $scores;
     }
 
