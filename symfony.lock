@@ -135,6 +135,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/browser-kit": {
+        "version": "v5.1.6"
+    },
     "symfony/cache": {
         "version": "v5.1.5"
     },
@@ -156,6 +159,9 @@
             "./bin/console"
         ]
     },
+    "symfony/css-selector": {
+        "version": "v5.1.6"
+    },
     "symfony/debug-bundle": {
         "version": "4.1",
         "recipe": {
@@ -176,6 +182,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v5.1.5"
+    },
+    "symfony/dom-crawler": {
+        "version": "v5.1.6"
     },
     "symfony/dotenv": {
         "version": "v5.1.5"
