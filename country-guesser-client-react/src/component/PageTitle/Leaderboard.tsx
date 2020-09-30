@@ -1,25 +1,15 @@
 import React from 'react'
 
-const Leaderboard = () => {
+const Leaderboard = (props) => {
 
-    let initData = [
-        {'id': 1, 'nickname': 'Jack', 'streak': 24},
-        {'id': 2, 'nickname': 'John', 'streak': 23},
-        {'id': 3, 'nickname': 'James', 'streak': 20},
-        {'id': 4, 'nickname': 'Jimbo', 'streak': 18},
-        {'id': 5, 'nickname': 'Jimmy', 'streak': 15},
-        {'id': 6, 'nickname': 'Jemimah', 'streak': 13},
-        {'id': 7, 'nickname': 'Jarrod', 'streak': 12},
-        {'id': 8, 'nickname': 'Jumbo', 'streak': 10},
-        {'id': 9, 'nickname': 'Jelly', 'streak': 8},
-        {'id': 10, 'nickname': 'Jye', 'streak': 4},
-    ]
+    let initData = props.highscoreData;
+    console.log(props.highscoreData);
 
-    let listInitData = initData.map((initData) => {
+    let listInitData = initData.map((initData, index) => {
         return (
-            <tr className="positionResults">
-                <th>{initData.id}</th>
-                <th>{initData.nickname}</th>
+            <tr className="positionResults" key={index}>
+                <th>{index+1}</th>
+                <th>{initData.name}</th>
                 <th>{initData.streak}</th>
             </tr>
         )

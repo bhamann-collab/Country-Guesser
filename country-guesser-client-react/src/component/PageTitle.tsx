@@ -11,7 +11,6 @@ const PageTitle = () => {
 
     useEffect(async () => {
         const results = await axios(url);
-        console.log(results.data)
         setHighscoreData(results.data);
     }, [])
 
@@ -32,7 +31,9 @@ const PageTitle = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Leaderboard />
+                        <Leaderboard 
+                        highscoreData={highscoreData}
+                        />
                     </Col>
                 </Row>
                 <Row>
