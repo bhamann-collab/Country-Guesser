@@ -9,9 +9,10 @@ const PageTitle = () => {
 
     const url = `http://localhost:8000/showHighScore`;
 
-    useEffect(async () => {
-        const results = await axios(url);
-        setHighscoreData(results.data);
+    useEffect(() => {
+        axios.get(url).then( request => {
+            setHighscoreData(request.data);
+        })
     }, [])
 
     return (
