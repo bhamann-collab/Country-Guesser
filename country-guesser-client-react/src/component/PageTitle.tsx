@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Leaderboard from './PageTitle/Leaderboard';
 import { Container, Row, Col, Button } from 'reactstrap';
+import axios from 'axios';
 
 const PageTitle = () => {
+    const[highscoreData, setHighscoreData] = useState([])
+
+    const url = `http://localhost:8000/showHighScore`;
+
+    useEffect(async () => {
+        const results = await axios(url);
+        console.log(results.data)
+        setHighscoreData(results.data);
+    }, [])
+
     return (
         <div className="pageTitle">
             <Container>

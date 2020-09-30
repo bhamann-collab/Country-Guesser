@@ -25,8 +25,6 @@ const Leaderboard = () => {
         )
     });
 
-    console.log(listInitData);
-
     return (
         <div className="Leaderboard">
             <table>
