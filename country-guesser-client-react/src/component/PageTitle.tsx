@@ -17,7 +17,7 @@ const PageTitle = () => {
 
     return (
         <div className="pageTitle">
-            <Container>
+            <Container fluid={true}>
                 <Row>
                     <Col>
                         <div className="titleText">
