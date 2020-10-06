@@ -43,7 +43,7 @@ const PageTitle = () => {
                             <Link
                             to={"/guessArea"}
                             >
-                                <Button outline color="primary">Click Here To Start</Button>
+                                <button className="bootButton">Click Here to Start</button>
                             </Link>
                         </div>
                     </Col>
