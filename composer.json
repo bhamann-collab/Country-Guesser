@@ -62,7 +62,7 @@
             "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "ComposerScript\\Installer::postPackageUpdate"
         ]
     },
     "conflict": {
