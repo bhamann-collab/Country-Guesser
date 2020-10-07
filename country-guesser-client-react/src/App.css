@@ -164,6 +164,8 @@ tr:nth-child(even) {
 
 .countryPosition img {
   width: 100%;
+  height: 250px;
+  object-fit: cover;
   transition: all .2s ease-in-out;
 }
 
