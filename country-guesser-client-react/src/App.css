@@ -160,6 +160,10 @@ tr:nth-child(even) {
 
 .countryPosition {
   margin-top: 50px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .countryPosition img {
