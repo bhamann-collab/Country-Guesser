@@ -23,6 +23,14 @@ class HighscoreController extends AbstractController
     }
 
     /**
+    * @Route("/{reactRouting}", name="index", defaults={"reactRouting": null})
+    */
+    public function dashboard(): Response
+    {
+        return $this->render('pub/index.html.twig');
+    }
+
+    /**
      * @Route("/createHighscore", name="highscore", methods={"POST"})
      */
     public function createHighscore(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
