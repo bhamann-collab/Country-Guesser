@@ -1,12 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import PageTitle from './components/PageTitle';
+import GuessArea from './components/GuessArea';
+import './styles/app.css';
 
-const App = () => {
+function App() {
     return (
-        <div>
-            <h1>Hello You absolute legends</h1>
-        </div>
-    )
+        <Router>
+            <div className="App">
+                <Switch>
+                    <Route path='/' exact component={PageTitle} />
+                    <Route path='/guessArea' exact component={GuessArea} />
+                </Switch>
+            </div>
+        </Router>
+    );
 }
 
 
