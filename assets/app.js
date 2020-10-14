@@ -9,6 +9,7 @@ import {
 import PageTitle from './components/PageTitle';
 import GuessArea from './components/GuessArea';
 import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
